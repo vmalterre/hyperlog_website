@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HyperLog | Trust in Every Entry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Primary Brand Colors */
+            --denim: #025EB5;
+            --denim-light: #328DD8;
+            --denim-lighter: #7DBEF4;
+            --denim-dark: #00213D;
+            
+            /* Neutrals */
+            --night-rider: #333333;
+            --night-rider-dark: #242526;
+            --night-rider-light: #5D6266;
+            --white: #FFFFFF;
+            --white-dark: #D1D2D2;
+            --white-darker: #B1B3B4;
+            --alice-blue: #DCEFFF;
+            
+            /* Accents */
+            --certified-green: #10B981;
+            --tracked-amber: #F59E0B;
+            --logged-blue: #3B82F6;
+            
+            /* Spacing */
+            --section-padding: clamp(60px, 10vw, 120px);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--night-rider-dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ============================================
+           NAVIGATION
+        ============================================ */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(36, 37, 38, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        .logo-tagline {
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--denim-light);
+            margin-top: -4px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--denim-light);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--white);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            background: var(--denim);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--denim);
+        }
+
+        .nav-cta:hover {
+            background: transparent;
+            color: var(--denim-light);
+            border-color: var(--denim-light);
+        }
+
+        /* ============================================
+           HERO SECTION
+        ============================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 120px 40px 80px;
+            overflow: hidden;
+        }
+
+        /* Animated grid background */
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: 
+                linear-gradient(180deg, var(--night-rider-dark) 0%, transparent 30%),
+                linear-gradient(0deg, var(--night-rider-dark) 0%, transparent 30%),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 60px,
+                    rgba(2, 94, 181, 0.03) 60px,
+                    rgba(2, 94, 181, 0.03) 61px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent,
+                    transparent 60px,
+                    rgba(2, 94, 181, 0.03) 60px,
+                    rgba(2, 94, 181, 0.03) 61px
+                );
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        /* Floating blockchain nodes */
+        .floating-nodes {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .node {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--denim);
+            border-radius: 50%;
+            opacity: 0.4;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .node::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, var(--denim), transparent);
+            transform-origin: left center;
+            opacity: 0.2;
+        }
+
+        .node:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; }
+        .node:nth-child(2) { top: 60%; left: 85%; animation-delay: -5s; }
+        .node:nth-child(3) { top: 80%; left: 20%; animation-delay: -10s; }
+        .node:nth-child(4) { top: 30%; left: 70%; animation-delay: -15s; }
+        .node:nth-child(5) { top: 70%; left: 50%; animation-delay: -8s; }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            25% { transform: translate(20px, -30px); }
+            50% { transform: translate(-10px, 20px); }
+            75% { transform: translate(30px, 10px); }
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(2, 94, 181, 0.15);
+            border: 1px solid rgba(2, 94, 181, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--denim-light);
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--certified-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 5rem);
+            font-weight: 800;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.8s ease-out 0.1s backwards;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--denim-light), var(--denim-lighter));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--white-darker);
+            max-width: 500px;
+            margin-bottom: 40px;
+            animation: fadeInUp 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 16px;
+            animation: fadeInUp 0.8s ease-out 0.3s backwards;
+        }
+
+        .btn-primary {
+            background: var(--denim);
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--denim);
+        }
+
+        .btn-primary:hover {
+            background: var(--denim-dark);
+            border-color: var(--denim-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(2, 94, 181, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 32px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 2px solid var(--night-rider-light);
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--denim-light);
+            color: var(--denim-light);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Hero Visual - Logbook Preview */
+        .hero-visual {
+            position: relative;
+            animation: fadeInUp 0.8s ease-out 0.4s backwards;
+        }
+
+        .logbook-preview {
+            background: linear-gradient(145deg, rgba(36, 37, 38, 0.9), rgba(51, 51, 51, 0.9));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            padding: 32px;
+            backdrop-filter: blur(20px);
+            box-shadow: 
+                0 50px 100px rgba(0, 0, 0, 0.5),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .logbook-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logbook-title {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--white-dark);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .logbook-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.75rem;
+            color: var(--certified-green);
+            font-weight: 500;
+        }
+
+        .logbook-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--certified-green);
+            border-radius: 50%;
+        }
+
+        .flight-entry {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .flight-entry:hover {
+            border-color: rgba(2, 94, 181, 0.3);
+            transform: translateX(4px);
+        }
+
+        .flight-route {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .airport-code {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .route-line {
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, var(--denim), var(--denim-light), var(--denim));
+            position: relative;
+        }
+
+        .route-line::before {
+            content: '✈';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 1rem;
+            color: var(--denim-light);
+        }
+
+        .flight-details {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .flight-detail {
+            text-align: center;
+        }
+
+        .flight-detail-label {
+            font-size: 0.65rem;
+            color: var(--white-darker);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+        }
+
+        .flight-detail-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--white);
+        }
+
+        .trust-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 10px;
+            border-radius: 100px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .trust-certified {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--certified-green);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+        }
+
+        .trust-tracked {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--tracked-amber);
+            border: 1px solid rgba(245, 158, 11, 0.3);
+        }
+
+        .trust-logged {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--logged-blue);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        /* ============================================
+           TRUST LEVELS SECTION
+        ============================================ */
+        .trust-section {
+            padding: var(--section-padding) 40px;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 80px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--denim-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--white-darker);
+        }
+
+        .trust-levels {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .trust-card {
+            background: linear-gradient(145deg, rgba(51, 51, 51, 0.5), rgba(36, 37, 38, 0.5));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 32px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .trust-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--card-accent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .trust-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-card:hover::before {
+            opacity: 1;
+        }
+
+        .trust-card.logged { --card-accent: var(--logged-blue); }
+        .trust-card.tracked { --card-accent: var(--tracked-amber); }
+        .trust-card.certified { --card-accent: var(--certified-green); }
+
+        .trust-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .trust-card.logged .trust-icon { background: rgba(59, 130, 246, 0.1); border-color: rgba(59, 130, 246, 0.2); }
+        .trust-card.tracked .trust-icon { background: rgba(245, 158, 11, 0.1); border-color: rgba(245, 158, 11, 0.2); }
+        .trust-card.certified .trust-icon { background: rgba(16, 185, 129, 0.1); border-color: rgba(16, 185, 129, 0.2); }
+
+        .trust-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .trust-card .trust-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 16px;
+            color: var(--card-accent);
+        }
+
+        .trust-card p {
+            color: var(--white-darker);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           FEATURES SECTION
+        ============================================ */
+        .features-section {
+            padding: var(--section-padding) 40px;
+            background: linear-gradient(180deg, transparent, rgba(2, 94, 181, 0.03), transparent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .features-list {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 20px;
+            padding: 24px;
+            border-radius: 16px;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .feature-item:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(2, 94, 181, 0.1);
+            border: 1px solid rgba(2, 94, 181, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .feature-content h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--white);
+        }
+
+        .feature-content p {
+            color: var(--white-darker);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .features-visual {
+            position: relative;
+        }
+
+        .stats-card {
+            background: linear-gradient(145deg, rgba(36, 37, 38, 0.95), rgba(51, 51, 51, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 24px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--denim-light);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--white-darker);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* ============================================
+           STAKEHOLDERS SECTION
+        ============================================ */
+        .stakeholders-section {
+            padding: var(--section-padding) 40px;
+        }
+
+        .stakeholders-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 60px;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white-darker);
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn:hover {
+            border-color: var(--denim);
+            color: var(--white);
+        }
+
+        .tab-btn.active {
+            background: var(--denim);
+            border-color: var(--denim);
+            color: var(--white);
+        }
+
+        .stakeholder-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .stakeholder-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+        }
+
+        .stakeholder-info p {
+            color: var(--white-darker);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .benefit-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .benefit-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--white-dark);
+        }
+
+        .benefit-list li::before {
+            content: '✓';
+            color: var(--certified-green);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* ============================================
+           CTA SECTION
+        ============================================ */
+        .cta-section {
+            padding: var(--section-padding) 40px;
+            text-align: center;
+            position: relative;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, var(--denim-dark), var(--denim));
+            border-radius: 32px;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-container h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            position: relative;
+        }
+
+        .cta-container p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            position: relative;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: var(--denim-dark);
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        /* ============================================
+           FOOTER
+        ============================================ */
+        footer {
+            padding: 60px 40px 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 60px;
+        }
+
+        .footer-brand {
+            max-width: 300px;
+        }
+
+        .footer-brand .logo {
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            color: var(--white-darker);
+            font-size: 0.9rem;
+            line-height: 1.7;
+        }
+
+        .footer-column h4 {
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: var(--white-darker);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--denim-light);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom p {
+            color: var(--white-darker);
+            font-size: 0.85rem;
+        }
+
+        .footer-legal {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-legal a {
+            color: var(--white-darker);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        /* ============================================
+           RESPONSIVE
+        ============================================ */
+        @media (max-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-ctas {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .trust-levels {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stakeholder-content {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 20px 60px;
+            }
+
+            .section-padding {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .stakeholders-tabs {
+                flex-wrap: wrap;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 8L4 20L24 26L44 20L24 8Z" fill="#025EB5"/>
+                <path d="M4 20V24L24 30L44 24V20L24 26L4 20Z" fill="#328DD8"/>
+                <path d="M4 28V32L24 38L44 32V28L24 34L4 28Z" fill="#7DBEF4"/>
+            </svg>
+            <div>
+                <div class="logo-text">HyperLog</div>
+                <div class="logo-tagline">Trust in Every Entry</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="pilots.html">For Pilots</a></li>
+            <li><a href="airlines.html">For Airlines</a></li>
+            <li><a href="regulators.html">For Regulators</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <a href="#download" class="nav-cta">Get Started</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="floating-nodes">
+            <div class="node"></div>
+            <div class="node"></div>
+            <div class="node"></div>
+            <div class="node"></div>
+            <div class="node"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-text">
+                <div class="hero-badge">Blockchain-Secured Aviation Records</div>
+                <h1>The Next Generation<br><span>Pilot Logbook</span></h1>
+                <p class="hero-subtitle">Every flight entry cryptographically signed and permanently recorded. Your hours. Your proof. Your control.</p>
+                <div class="hero-ctas">
+                    <a href="#download" class="btn-primary">
+                        Download App
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#demo" class="btn-secondary">Watch Demo</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="logbook-preview">
+                    <div class="logbook-header">
+                        <span class="logbook-title">Recent Flights</span>
+                        <span class="logbook-status">Synced</span>
+                    </div>
+                    <div class="flight-entry">
+                        <div class="flight-route">
+                            <span class="airport-code">EGLL</span>
+                            <div class="route-line"></div>
+                            <span class="airport-code">KJFK</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="flight-detail">
+                                <div class="flight-detail-label">Date</div>
+                                <div class="flight-detail-value">02 JAN</div>
+                            </div>
+                            <div class="flight-detail">
+                                <div class="flight-detail-label">Aircraft</div>
+                                <div class="flight-detail-value">B777</div>
+                            </div>
+                            <div class="flight-detail">
+                                <div class="flight-detail-label">Hours</div>
+                                <div class="flight-detail-value">07:45</div>
+                            </div>
+                            <div class="flight-detail">
+                                <div class="flight-detail-label">Trust</div>
+                                <div class="flight-detail-value">
+                                    <span class="trust-badge trust-certified">✓ Certified</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flight-entry">
+                        <div class="flight-route">
+                            <span class="airport-code">LFPG</span>
+                            <div class="route-line"></div>
+                            <span class="airport-code">EGLL</span>
+                        </div>
+                        <div class="flight-details">
+                            <div class="flight-detail">
+                                <div class="flight-detail-label">Date</div>
+                                <div class="flight-detail-value">31 DEC</div>
+                            </div>
+                            <div class="flight-detail">
+                                <div class="flight-detail-label">Aircraft</div>
+                                <div class="flight-detail-value">A320</div>
+                            </div>
+                            <div class="flight-detail">
+                                <div class="flight-detail-label">Hours</div>
+                                <div class="flight-detail-value">01:15</div>
+                            </div>
+                            <div class="flight-detail">
+                                <div class="flight-detail-label">Trust</div>
+                                <div class="flight-detail-value">
+                                    <span class="trust-badge trust-tracked">📡 Tracked</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Levels Section -->
+    <section class="trust-section" id="features">
+        <div class="section-header">
+            <div class="section-label">Trust Architecture</div>
+            <h2 class="section-title">Three Tiers of Verification</h2>
+            <p class="section-subtitle">Every flight record progresses through verifiable trust levels, from pilot signature to regulatory certification.</p>
+        </div>
+        <div class="trust-levels">
+            <div class="trust-card logged">
+                <div class="trust-icon">✈️</div>
+                <div class="trust-label">Level 1</div>
+                <h3>Logged</h3>
+                <p>Flight entries signed with your private key. Your word, backed by cryptographic proof that only you could have created this record.</p>
+            </div>
+            <div class="trust-card tracked">
+                <div class="trust-icon">📡</div>
+                <div class="trust-label">Level 2</div>
+                <h3>Tracked</h3>
+                <p>Entries corroborated by external data—ADS-B, FlightRadar, and tracking systems automatically verify your flight details.</p>
+            </div>
+            <div class="trust-card certified">
+                <div class="trust-icon">✅</div>
+                <div class="trust-label">Level 3</div>
+                <h3>Certified</h3>
+                <p>The gold standard. Regulatory authorities (CAA, EASA, FAA) digitally sign your records for official recognition.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="features-list">
+                <div class="section-header" style="text-align: left; margin-bottom: 40px;">
+                    <div class="section-label">Why HyperLog</div>
+                    <h2 class="section-title">Built for Modern Aviation</h2>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔐</div>
+                    <div class="feature-content">
+                        <h4>Blockchain Security</h4>
+                        <p>Enterprise-grade Hyperledger Fabric ensures your records are immutable and tamper-proof. No cryptocurrency complexity.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔑</div>
+                    <div class="feature-content">
+                        <h4>You Own Your Keys</h4>
+                        <p>Private keys never leave your device. Sign entries with biometric confirmation using iOS Keychain or Android Keystore.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">⚡</div>
+                    <div class="feature-content">
+                        <h4>Instant Verification</h4>
+                        <p>Airlines and regulators verify your credentials in seconds, not days. Share selectively with full control.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🤖</div>
+                    <div class="feature-content">
+                        <h4>AI-Powered Insights</h4>
+                        <p>Track career progression, FTL compliance, and rest optimization with intelligent recommendations.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="features-visual">
+                <div class="stats-card">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">300K+</div>
+                            <div class="stat-label">Professional Pilots</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">1.5M+</div>
+                            <div class="stat-label">Private Pilots</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">5,000+</div>
+                            <div class="stat-label">Airlines Worldwide</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">$7B</div>
+                            <div class="stat-label">Market Size</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stakeholders Section -->
+    <section class="stakeholders-section" id="pilots">
+        <div class="section-header">
+            <div class="section-label">Who It's For</div>
+            <h2 class="section-title">One Platform, Every Stakeholder</h2>
+        </div>
+        <div class="stakeholders-tabs">
+            <button class="tab-btn active">For Pilots</button>
+            <button class="tab-btn">For Airlines</button>
+            <button class="tab-btn">For Regulators</button>
+        </div>
+        <div class="stakeholder-content">
+            <div class="stakeholder-info">
+                <h3>Your Career, Secured Forever</h3>
+                <p>No more lost logbooks. No more disputed hours. Every flight you log is cryptographically signed and permanently recorded on the blockchain.</p>
+                <ul class="benefit-list">
+                    <li>Immutable records protect your hard-earned hours</li>
+                    <li>Share credentials instantly with employers</li>
+                    <li>AI-powered career progression tracking</li>
+                    <li>Automatic FTL compliance monitoring</li>
+                    <li>Works offline, syncs when connected</li>
+                </ul>
+            </div>
+            <div class="stakeholder-visual">
+                <div class="stats-card">
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-value">100%</div>
+                            <div class="stat-label">Tamper-Proof</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Data Loss Risk</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">&lt;3s</div>
+                            <div class="stat-label">Verification Time</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">Free</div>
+                            <div class="stat-label">Core Features</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Ready to Secure Your Flight Records?</h2>
+            <p>Join thousands of pilots who trust HyperLog to protect their aviation career. Free to start, powerful to grow.</p>
+            <div class="cta-buttons">
+                <a href="#download" class="btn-white">Download for Free</a>
+                <a href="#contact" class="btn-outline-white">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="#" class="logo">
+                    <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" width="40" height="40">
+                        <path d="M24 8L4 20L24 26L44 20L24 8Z" fill="#025EB5"/>
+                        <path d="M4 20V24L24 30L44 24V20L24 26L4 20Z" fill="#328DD8"/>
+                        <path d="M4 28V32L24 38L44 32V28L24 34L4 28Z" fill="#7DBEF4"/>
+                    </svg>
+                    <div>
+                        <div class="logo-text">HyperLog</div>
+                    </div>
+                </a>
+                <p>The next generation pilot logbook. Blockchain-secured, pilot-owned, authority-recognized.</p>
+            </div>
+            <div class="footer-column">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Security</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Solutions</h4>
+                <ul>
+                    <li><a href="#">For Pilots</a></li>
+                    <li><a href="#">For Airlines</a></li>
+                    <li><a href="#">For Regulators</a></li>
+                    <li><a href="#">For Flight Schools</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 HyperLog Ltd. United Kingdom. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching functionality
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.trust-card, .feature-item, .stat-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

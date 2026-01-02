@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Regulators | HyperLog - Trust in Every Entry</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --denim: #025EB5;
+            --denim-light: #328DD8;
+            --denim-lighter: #7DBEF4;
+            --denim-dark: #00213D;
+            --night-rider: #333333;
+            --night-rider-dark: #242526;
+            --night-rider-light: #5D6266;
+            --white: #FFFFFF;
+            --white-dark: #D1D2D2;
+            --white-darker: #B1B3B4;
+            --alice-blue: #DCEFFF;
+            --certified-green: #10B981;
+            --tracked-amber: #F59E0B;
+            --logged-blue: #3B82F6;
+            --section-padding: clamp(60px, 10vw, 120px);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--night-rider-dark);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(36, 37, 38, 0.85);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--white);
+        }
+
+        .logo-icon { width: 48px; height: 48px; }
+        .logo-text { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.02em; }
+        .logo-tagline { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.15em; color: var(--denim-light); margin-top: -4px; }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--white-dark);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--denim-light);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover { color: var(--white); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-links a.active { color: var(--denim-light); }
+        .nav-links a.active::after { width: 100%; }
+
+        .nav-cta {
+            background: var(--denim);
+            color: var(--white);
+            padding: 12px 28px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: 1px solid var(--denim);
+        }
+
+        .nav-cta:hover {
+            background: transparent;
+            color: var(--denim-light);
+            border-color: var(--denim-light);
+        }
+
+        .hero {
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 140px 40px 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, var(--night-rider-dark) 0%, transparent 30%),
+                linear-gradient(0deg, var(--night-rider-dark) 0%, transparent 30%),
+                repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(2, 94, 181, 0.03) 60px, rgba(2, 94, 181, 0.03) 61px),
+                repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(2, 94, 181, 0.03) 60px, rgba(2, 94, 181, 0.03) 61px);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(16, 185, 129, 0.15);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            padding: 8px 16px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--certified-green);
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.03em;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--certified-green), #34D399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--white-darker);
+            max-width: 650px;
+            margin: 0 auto 40px;
+        }
+
+        .section {
+            padding: var(--section-padding) 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--denim-light);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--white-darker);
+        }
+
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .capability-card {
+            background: linear-gradient(145deg, rgba(51, 51, 51, 0.5), rgba(36, 37, 38, 0.5));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px 32px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .capability-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--certified-green);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .capability-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .capability-card:hover::before {
+            opacity: 1;
+        }
+
+        .capability-icon {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 24px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+        }
+
+        .capability-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .capability-card p {
+            color: var(--white-darker);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        .authority-section {
+            background: linear-gradient(180deg, transparent, rgba(16, 185, 129, 0.02), transparent);
+        }
+
+        .authority-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .authority-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .authority-info p {
+            color: var(--white-darker);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 32px;
+        }
+
+        .authority-list {
+            list-style: none;
+        }
+
+        .authority-list li {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding: 16px 20px;
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            border-radius: 12px;
+            color: var(--white-dark);
+            font-size: 1rem;
+        }
+
+        .authority-list li .badge {
+            background: var(--certified-green);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .network-visual {
+            background: linear-gradient(145deg, rgba(36, 37, 38, 0.95), rgba(51, 51, 51, 0.95));
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .network-diagram {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .network-node {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 24px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .network-node.authority {
+            background: rgba(16, 185, 129, 0.1);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+
+        .network-node .icon {
+            font-size: 1.5rem;
+        }
+
+        .network-node .label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--white-dark);
+        }
+
+        .network-connector {
+            width: 2px;
+            height: 30px;
+            background: linear-gradient(180deg, var(--denim), var(--certified-green));
+        }
+
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .security-card {
+            background: linear-gradient(145deg, rgba(51, 51, 51, 0.3), rgba(36, 37, 38, 0.3));
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 32px;
+            display: flex;
+            gap: 20px;
+        }
+
+        .security-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: rgba(2, 94, 181, 0.1);
+            border: 1px solid rgba(2, 94, 181, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .security-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .security-card p {
+            color: var(--white-darker);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .cta-section {
+            padding: var(--section-padding) 40px;
+            text-align: center;
+        }
+
+        .cta-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, #064E3B, var(--certified-green));
+            border-radius: 32px;
+            padding: 80px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-container h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .cta-container p {
+            font-size: 1.15rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+        }
+
+        .btn-white {
+            background: var(--white);
+            color: #064E3B;
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-white:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: var(--white);
+            padding: 16px 36px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline-white:hover {
+            border-color: var(--white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        footer {
+            padding: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--white-darker);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--denim-light);
+            text-decoration: none;
+        }
+
+        @media (max-width: 1024px) {
+            .capabilities-grid { grid-template-columns: 1fr; max-width: 500px; }
+            .authority-content { grid-template-columns: 1fr; }
+            .security-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 20px; }
+            .nav-links { display: none; }
+            .hero, .section { padding-left: 20px; padding-right: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="index.html" class="logo">
+            <svg class="logo-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M24 8L4 20L24 26L44 20L24 8Z" fill="#025EB5"/>
+                <path d="M4 20V24L24 30L44 24V20L24 26L4 20Z" fill="#328DD8"/>
+                <path d="M4 28V32L24 38L44 32V28L24 34L4 28Z" fill="#7DBEF4"/>
+            </svg>
+            <div>
+                <div class="logo-text">HyperLog</div>
+                <div class="logo-tagline">Trust in Every Entry</div>
+            </div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="pilots.html">For Pilots</a></li>
+            <li><a href="airlines.html">For Airlines</a></li>
+            <li><a href="regulators.html" class="active">For Regulators</a></li>
+            <li><a href="technology.html">Technology</a></li>
+            <li><a href="about.html">About</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Partner With Us</a>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <div class="hero-badge">For Aviation Authorities</div>
+            <h1>Enhanced <span>Oversight</span>, Instant Access</h1>
+            <p class="hero-subtitle">Access tamper-proof pilot records for audits and safety oversight. Digitally sign entries for official recognition. Reduce fraud with cryptographic verification.</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Regulatory Capabilities</div>
+            <h2 class="section-title">Built for Government-Grade Security</h2>
+            <p class="section-subtitle">HyperLog is pre-provisioned for integration with CAA, EASA, FAA, and other national aviation authorities.</p>
+        </div>
+        <div class="capabilities-grid">
+            <div class="capability-card">
+                <div class="capability-icon">🔍</div>
+                <h3>Instant Audit Access</h3>
+                <p>Access complete, verified pilot records on demand. Every entry includes full provenance and cryptographic proof of authenticity.</p>
+            </div>
+            <div class="capability-card">
+                <div class="capability-icon">✍️</div>
+                <h3>Authority Signatures</h3>
+                <p>Digitally sign pilot records using your Certificate Authority credentials. Elevate entries to "Certified" status for official recognition.</p>
+            </div>
+            <div class="capability-card">
+                <div class="capability-icon">🛡️</div>
+                <h3>Fraud Prevention</h3>
+                <p>Blockchain immutability eliminates falsified records. Every entry is traceable, attributable, and cryptographically verified.</p>
+            </div>
+            <div class="capability-card">
+                <div class="capability-icon">📊</div>
+                <h3>Compliance Analytics</h3>
+                <p>Aggregate insights across pilot populations. Monitor FTL compliance, identify patterns, and enhance safety oversight.</p>
+            </div>
+            <div class="capability-card">
+                <div class="capability-icon">🔗</div>
+                <h3>Run Your Own Node</h3>
+                <p>Participate directly in the network. Host your own Hyperledger Fabric node for maximum sovereignty and trust.</p>
+            </div>
+            <div class="capability-card">
+                <div class="capability-icon">🌐</div>
+                <h3>International Cooperation</h3>
+                <p>Share verified records across jurisdictions. Pre-built integrations facilitate cross-border pilot credential verification.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section authority-section">
+        <div class="authority-content">
+            <div class="authority-info">
+                <h3>Pre-Provisioned for Major Authorities</h3>
+                <p>HyperLog's architecture includes pre-provisioned Certificate Authority infrastructure for major regulatory bodies, enabling seamless integration.</p>
+                <ul class="authority-list">
+                    <li><span class="badge">Ready</span> UK Civil Aviation Authority (CAA)</li>
+                    <li><span class="badge">Ready</span> European Union Aviation Safety Agency (EASA)</li>
+                    <li><span class="badge">Ready</span> Federal Aviation Administration (FAA)</li>
+                    <li><span class="badge">Ready</span> Transport Canada Civil Aviation (TCCA)</li>
+                </ul>
+            </div>
+            <div class="network-visual">
+                <div class="network-diagram">
+                    <div class="network-node authority">
+                        <span class="icon">🏛️</span>
+                        <span class="label">Regulatory Authority Node</span>
+                    </div>
+                    <div class="network-connector"></div>
+                    <div class="network-node">
+                        <span class="icon">🔗</span>
+                        <span class="label">Hyperledger Fabric Network</span>
+                    </div>
+                    <div class="network-connector"></div>
+                    <div class="network-node">
+                        <span class="icon">✈️</span>
+                        <span class="label">Pilot Records (Encrypted)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header">
+            <div class="section-label">Security Architecture</div>
+            <h2 class="section-title">Enterprise-Grade Protection</h2>
+        </div>
+        <div class="security-grid">
+            <div class="security-card">
+                <div class="security-icon">🔐</div>
+                <div>
+                    <h4>Hyperledger Fabric</h4>
+                    <p>Enterprise blockchain without cryptocurrency. Permissioned network with known participants and Raft consensus.</p>
+                </div>
+            </div>
+            <div class="security-card">
+                <div class="security-icon">📜</div>
+                <div>
+                    <h4>Complete Audit Trail</h4>
+                    <p>Every action recorded immutably. Full provenance from entry creation through verification and certification.</p>
+                </div>
+            </div>
+            <div class="security-card">
+                <div class="security-icon">🔑</div>
+                <div>
+                    <h4>PKI Infrastructure</h4>
+                    <p>X.509 certificates for all participants. Integrate with existing government PKI systems.</p>
+                </div>
+            </div>
+            <div class="security-card">
+                <div class="security-icon">🛡️</div>
+                <div>
+                    <h4>Non-Repudiation</h4>
+                    <p>Cryptographic signatures ensure entries cannot be denied by their creators. Legal-grade evidence.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-container">
+            <h2>Partner With HyperLog</h2>
+            <p>Join us in building the future of aviation record-keeping. We're actively seeking partnerships with regulatory authorities worldwide.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn-white">Request Partnership</a>
+                <a href="#whitepaper" class="btn-outline-white">Technical Whitepaper</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 HyperLog Ltd. United Kingdom. <a href="index.html">Back to Home</a></p>
+    </footer>
+</body>
+</html>
