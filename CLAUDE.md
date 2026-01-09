@@ -15,14 +15,25 @@ HyperLog is a blockchain-powered digital pilot logbook website for hyperlog.aero
 This is a static single-page website with no build tools or dependencies. All styles and scripts are embedded inline in `hyperlog_frontpage.html`.
 
 ### Key Files
-- `hyperlog_frontpage.html` - The complete website (HTML + inline CSS + inline JS)
+- `index.html` - The complete website (HTML + inline CSS + inline JS) - served by default
+- `hyperlog_frontpage.html` - Copy of index.html (kept in sync)
+- `favicon.svg` - SVG favicon using the HyperLog logo
 - `HYPERLOG_WEBSITE_BRIEF.md` - Product specification and design requirements
 
 ### Development
-To preview the website, open `hyperlog_frontpage.html` directly in a browser or use any local server:
+To preview the website, use any local server:
 ```bash
 python3 -m http.server 8000
 ```
+Then open http://localhost:8000/
+
+### Responsive Design
+The website is fully responsive with three breakpoints:
+- **1024px** - Tablet layout (single column, stacked sections)
+- **768px** - Mobile layout (hamburger menu, reduced spacing)
+- **480px** - Phone layout (full-width buttons, single-column grids)
+
+Mobile navigation uses a fullscreen overlay menu triggered by a hamburger button. JavaScript handles the menu toggle and ensures cross-browser compatibility for responsive styles.
 
 ## Brand Guidelines
 
