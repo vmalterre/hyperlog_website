@@ -1,0 +1,11 @@
+<svg viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Android Adaptive Icon Foreground Layer -->
+    <!-- Safe zone: 66dp centered (21dp inset on each side) -->
+    <!-- This layer contains only the logo, positioned within safe zone -->
+
+    <g transform="translate(21, 27) scale(1.375)">
+        <path d="M24 8L4 20L24 26L44 20L24 8Z" fill="#025EB5"/>
+        <path d="M4 20V24L24 30L44 24V20L24 26L4 20Z" fill="#328DD8"/>
+        <path d="M4 28V32L24 38L44 32V28L24 34L4 28Z" fill="#7DBEF4"/>
+    </g>
+</svg>

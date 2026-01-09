@@ -1,0 +1,11 @@
+<svg viewBox="0 0 108 108" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Android Adaptive Icon Background Layer -->
+    <defs>
+        <linearGradient id="android-bg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00213D"/>
+            <stop offset="100%" stop-color="#012847"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="108" height="108" fill="url(#android-bg)"/>
+</svg>

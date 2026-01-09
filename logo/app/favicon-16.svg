@@ -1,0 +1,9 @@
+<svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- 16x16 Favicon - simplified for tiny size -->
+    <rect width="16" height="16" rx="3" fill="#00213D"/>
+
+    <!-- Extra simplified logo -->
+    <path d="M8 3L2 6.5L8 8.5L14 6.5L8 3Z" fill="#025EB5"/>
+    <path d="M2 7.5L8 9.5L14 7.5L14 8.5L8 10.5L2 8.5Z" fill="#328DD8"/>
+    <path d="M2 10L8 12L14 10L14 11L8 13L2 11Z" fill="#7DBEF4"/>
+</svg>

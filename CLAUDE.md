@@ -29,11 +29,11 @@ Then open http://localhost:8000/
 
 ### Responsive Design
 The website is fully responsive with three breakpoints:
-- **1024px** - Tablet layout (single column, stacked sections)
-- **768px** - Mobile layout (hamburger menu, reduced spacing)
+- **1024px** - Tablet layout (single column, stacked sections, hamburger menu)
+- **768px** - Mobile layout (reduced spacing)
 - **480px** - Phone layout (full-width buttons, single-column grids)
 
-Mobile navigation uses a fullscreen overlay menu triggered by a hamburger button. JavaScript handles the menu toggle and ensures cross-browser compatibility for responsive styles.
+Mobile navigation uses a fullscreen overlay menu triggered by a hamburger button. The hamburger menu appears on all tablets and mobile devices (1024px and below). JavaScript handles the menu toggle and ensures cross-browser compatibility for responsive styles.
 
 ## Brand Guidelines
 

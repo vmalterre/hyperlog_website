@@ -1,0 +1,26 @@
+<svg viewBox="0 0 1024 1024" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Background gradient -->
+    <defs>
+        <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00213D"/>
+            <stop offset="100%" stop-color="#012847"/>
+        </linearGradient>
+        <linearGradient id="shine" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+
+    <!-- Dark background -->
+    <rect width="1024" height="1024" fill="url(#bg-gradient)"/>
+
+    <!-- Subtle shine overlay -->
+    <rect width="1024" height="512" fill="url(#shine)"/>
+
+    <!-- Logo icon - scaled and centered -->
+    <g transform="translate(212, 262) scale(12.5)">
+        <path d="M24 8L4 20L24 26L44 20L24 8Z" fill="#025EB5"/>
+        <path d="M4 20V24L24 30L44 24V20L24 26L4 20Z" fill="#328DD8"/>
+        <path d="M4 28V32L24 38L44 32V28L24 34L4 28Z" fill="#7DBEF4"/>
+    </g>
+</svg>

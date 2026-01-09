@@ -1,0 +1,14 @@
+<svg viewBox="0 0 240 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Dark background -->
+    <rect width="240" height="80" rx="12" fill="#242526"/>
+    <!-- Logo icon -->
+    <g transform="translate(20, 16)">
+        <path d="M24 8L4 20L24 26L44 20L24 8Z" fill="#025EB5"/>
+        <path d="M4 20V24L24 30L44 24V20L24 26L4 20Z" fill="#328DD8"/>
+        <path d="M4 28V32L24 38L44 32V28L24 34L4 28Z" fill="#7DBEF4"/>
+    </g>
+    <!-- HyperLog text -->
+    <text x="76" y="42" font-family="Outfit, Arial, sans-serif" font-size="24" font-weight="700" fill="#FFFFFF" letter-spacing="-0.02em">HyperLog</text>
+    <!-- Tagline -->
+    <text x="76" y="58" font-family="Outfit, Arial, sans-serif" font-size="9" font-weight="500" fill="#7DBEF4" letter-spacing="0.15em">TRUST IN EVERY ENTRY</text>
+</svg>

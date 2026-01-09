@@ -1,0 +1,23 @@
+<svg viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- Apple Touch Icon (180x180) -->
+    <defs>
+        <linearGradient id="bg-apple" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00213D"/>
+            <stop offset="100%" stop-color="#012847"/>
+        </linearGradient>
+        <linearGradient id="shine-apple" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.1"/>
+            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="180" height="180" fill="url(#bg-apple)"/>
+    <rect width="180" height="90" fill="url(#shine-apple)"/>
+
+    <!-- Logo icon centered -->
+    <g transform="translate(42, 50) scale(2)">
+        <path d="M24 8L4 20L24 26L44 20L24 8Z" fill="#025EB5"/>
+        <path d="M4 20V24L24 30L44 24V20L24 26L4 20Z" fill="#328DD8"/>
+        <path d="M4 28V32L24 38L44 32V28L24 34L4 28Z" fill="#7DBEF4"/>
+    </g>
+</svg>

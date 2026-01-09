@@ -157,9 +157,9 @@
             border-color: var(--denim-light);
         }
 
-        /* Mobile Menu Button */
+        /* Mobile Menu Button - hidden by default, shown only on mobile via JS */
         .menu-toggle {
-            display: none;
+            display: none !important;
             flex-direction: column;
             justify-content: center;
             gap: 5px;
@@ -170,6 +170,10 @@
             cursor: pointer;
             padding: 4px;
             z-index: 1001;
+        }
+
+        .menu-toggle.visible {
+            display: flex !important;
         }
 
         .menu-toggle span {
@@ -1125,24 +1129,23 @@
             .floating-nodes {
                 display: none;
             }
-        }
 
-        @media (max-width: 768px) {
-            nav {
-                padding: 16px 20px;
-            }
-
+            /* Hide nav links on tablet - show hamburger menu instead */
             .nav-links,
             nav .nav-cta {
                 display: none !important;
             }
 
-            .menu-toggle {
-                display: flex !important;
-            }
+            /* menu-toggle visibility controlled by JS via .visible class */
 
             .mobile-menu {
                 display: flex !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 20px;
             }
 
             .hero {
@@ -1771,14 +1774,15 @@
             const navLinks = document.querySelector('.nav-links');
             const navCta = document.querySelector('nav .nav-cta');
 
-            if (width <= 768) {
-                if (menuToggle) menuToggle.style.display = 'flex';
+            // Show hamburger menu on tablet and below (1024px)
+            if (width <= 1024) {
+                if (menuToggle) menuToggle.classList.add('visible');
                 if (navLinks) navLinks.style.display = 'none';
                 if (navCta) navCta.style.display = 'none';
             } else {
-                if (menuToggle) menuToggle.style.display = 'none';
-                if (navLinks) navLinks.style.display = 'flex';
-                if (navCta) navCta.style.display = 'block';
+                if (menuToggle) menuToggle.classList.remove('visible');
+                if (navLinks) navLinks.style.display = '';
+                if (navCta) navCta.style.display = '';
             }
         }
         applyMobileStyles();

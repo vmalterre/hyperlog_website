@@ -1,0 +1,22 @@
+<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <!-- PWA Manifest Icon 512x512 -->
+    <defs>
+        <linearGradient id="bg-512" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#00213D"/>
+            <stop offset="100%" stop-color="#012847"/>
+        </linearGradient>
+        <linearGradient id="shine-512" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.08"/>
+            <stop offset="50%" stop-color="#FFFFFF" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+
+    <rect width="512" height="512" rx="64" fill="url(#bg-512)"/>
+    <rect width="512" height="256" rx="64" fill="url(#shine-512)"/>
+
+    <g transform="translate(106, 131) scale(6.25)">
+        <path d="M24 8L4 20L24 26L44 20L24 8Z" fill="#025EB5"/>
+        <path d="M4 20V24L24 30L44 24V20L24 26L4 20Z" fill="#328DD8"/>
+        <path d="M4 28V32L24 38L44 32V28L24 34L4 28Z" fill="#7DBEF4"/>
+    </g>
+</svg>
